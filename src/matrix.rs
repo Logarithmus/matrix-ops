@@ -114,7 +114,9 @@ impl<T> Matrix<T> {
     }
 
     pub fn quadrants(&self) -> [[Matrix<T>; 2]; 2]
-    where T: Copy {
+    where
+        T: Copy
+    {
         let (rows, cols, data) = (self.rows, self.cols, &self.data);
         let top_left = data.chunks(cols).take(rows / 2)
             .map(|row| &row[..(cols / 2)])
@@ -143,7 +145,7 @@ impl<T> Matrix<T> {
 
 pub fn mult_naive<T>(mat1: &Matrix<T>, mat2: &Matrix<T>) -> Matrix<T>
 where
-    T: Mul<Output = T> + Add<Output = T> + AddAssign + Default + Clone + Copy + Display,
+    T: Mul<Output = T> + Add<Output = T> + AddAssign + Default + Copy,
 {
     assert_eq!(mat1.cols, mat2.rows);
     let mut product = Matrix::new((mat1.rows, mat2.cols));
