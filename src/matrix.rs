@@ -64,8 +64,7 @@ where T: Debug,
 {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         for row in self.data.chunks(self.cols) {
-            write!(f, "{:<5?}", row)?;
-            println!();
+            write!(f, "{:<5.2?}\n", row)?;
         }
         Ok(())
     }
